@@ -20,6 +20,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  cors: ['https://wrestlepulse.in', 'http://localhost:3000'],
+  csrf: ['https://wrestlepulse.in', 'http://localhost:3000'],
   collections: [Users, Media, Posts],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
