@@ -137,7 +137,7 @@ export default async function HomePage() {
           </section>
         ) : (
           <div className="empty-state">
-            <p>No published articles yet. <Link href="/admin">Go to admin panel</Link> to create your first post.</p>
+            <p>No articles yet. Check back soon!</p>
           </div>
         )}
 
