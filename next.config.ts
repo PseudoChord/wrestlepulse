@@ -39,6 +39,14 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'pub-5a8c0a606aec4c5fada31f0500f5171b.r2.dev',
+      },
+    ],
+  },
   async headers() {
     return [
       {
