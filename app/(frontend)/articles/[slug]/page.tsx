@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { ArticleCard, CategoryTag, type ArticleCardPost } from '../../components/ArticleCard'
+import { ShareButtons } from '../../components/ShareButtons'
 
 function formatDateLong(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-IN', {
@@ -83,7 +84,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!post) notFound()
 
   const payload = await getPayload({ config: await config })
-  const { docs: related } = await payload.find({
+  let { docs: related } = await payload.find({
     collection: 'posts',
     where: {
       category: { equals: post.category },
@@ -94,6 +95,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     limit: 3,
     depth: 1,
   })
+
+  if (related.length === 0) {
+    const { docs: recent } = await payload.find({
+      collection: 'posts',
+      where: {
+        status: { equals: 'published' },
+        slug: { not_equals: slug },
+      },
+      sort: '-publishedDate',
+      limit: 3,
+      depth: 1,
+    })
+    related = recent
+  }
 
   const author = post.author && typeof post.author === 'object' ? (post.author as any) : null
   const image = post.featuredImage && typeof post.featuredImage === 'object' ? (post.featuredImage as any) : null
@@ -160,35 +175,30 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="article-tags">
               <span className="article-tags-label">Tags:</span>
               {tags.map((tag) => (
-                <span key={tag} className="article-tag-pill">{tag}</span>
+                <Link
+                  key={tag}
+                  href={`/tag/${tag.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-')}`}
+                  className="article-tag-pill"
+                >
+                  {tag}
+                </Link>
               ))}
             </div>
           )}
 
-          {/* Author bio */}
-          {author?.bio && (
-            <div className="author-bio-box">
-              {avatar?.url && (
-                <Image
-                  src={avatar.url}
-                  alt={authorName ?? ''}
-                  width={56}
-                  height={56}
-                  className="author-bio-avatar"
-                />
-              )}
-              <div>
-                {authorName && <p className="author-bio-name">{authorName}</p>}
-                <p className="author-bio-text">{author.bio}</p>
-              </div>
-            </div>
-          )}
+          {/* Share buttons */}
+          <ShareButtons
+            url={`https://wrestlepulse.in/articles/${slug}`}
+            title={post.title}
+          />
+
+          {/* Author bio hidden */}
         </article>
 
         {related.length > 0 && (
           <section className="related-section">
             <div className="related-inner">
-              <h2 className="section-heading">More {post.category} Stories</h2>
+              <h2 className="section-heading">More Stories</h2>
               <div className="related-grid">
                 {(related as unknown as ArticleCardPost[]).map((r) => (
                   <ArticleCard key={r.id} post={r} />

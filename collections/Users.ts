@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { isAdmin, isAdminOrSelf } from '../access/roles'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -6,7 +7,27 @@ export const Users: CollectionConfig = {
     useAsTitle: 'displayName',
   },
   auth: true,
+  access: {
+    read: isAdminOrSelf,
+    create: isAdmin,
+    update: isAdminOrSelf,
+    delete: isAdmin,
+  },
   fields: [
+    {
+      name: 'role',
+      type: 'select',
+      required: true,
+      defaultValue: 'editor',
+      options: [
+        { label: 'Admin', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Admins can delete posts, media, and users.',
+      },
+    },
     {
       name: 'displayName',
       type: 'text',

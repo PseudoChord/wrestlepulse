@@ -668,6 +668,16 @@ body {
   background: #e5e7eb;
 }
 
+@media (max-width: 700px) {
+  .article-featured-image {
+    height: 220px;
+    border-radius: 4px;
+  }
+  .news-card-image-wrap {
+    height: 160px;
+  }
+}
+
 .article-img {
   object-fit: cover;
 }
@@ -758,7 +768,6 @@ body {
   border-radius: 999px;
   border: 1px solid var(--border);
   transition: background 0.15s, color 0.15s;
-  cursor: default;
 }
 
 .article-tag-pill:hover {
@@ -979,3 +988,163 @@ a.pagination-btn:hover {
   font-size: 0.75rem;
   color: #4b5563;
 }
+
+/* ── Footer links ── */
+.footer-links {
+  display: flex;
+  gap: 24px;
+  margin: 4px 0;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* ── Share buttons ── */
+.share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.share-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+  color: #fff;
+}
+
+.share-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.share-btn--x        { background: #000000; }
+.share-btn--whatsapp { background: #25D366; }
+.share-btn--facebook { background: #1877F2; }
+
+/* ── Tag page ── */
+.tag-page-hash {
+  color: var(--accent);
+  margin-right: 2px;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 14px;
+}
+
+.category-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.category-grid-wrap {
+  margin-top: 8px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-secondary);
+}
+
+/* ── Static pages (About, Contact) ── */
+.static-page-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.static-page-container {
+  max-width: 720px;
+}
+
+.static-page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  border-left: 5px solid var(--accent);
+  padding-left: 16px;
+  margin-bottom: 36px;
+}
+
+.static-page-section {
+  margin-bottom: 32px;
+}
+
+.static-page-section h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.static-page-section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.static-page-list {
+  list-style: disc;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.static-page-list strong {
+  color: var(--text-primary);
+}
+
+.inline-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  text-decoration: underline;
+}
+
+.contact-email {
+  font-size: 1.05rem;
+}
+
+/* ── Tag pill as link ── */
+a.article-tag-pill {
+  text-decoration: none;
+  cursor: pointer;
+}
+

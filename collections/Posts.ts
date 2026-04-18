@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { isAdmin } from '../access/roles'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
@@ -20,6 +21,7 @@ export const Posts: CollectionConfig = {
   },
   access: {
     read: () => true,
+    delete: isAdmin,
   },
   fields: [
     {

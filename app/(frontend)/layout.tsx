@@ -4,6 +4,9 @@ import './styles.css'
 export const metadata = {
   title: "WrestlePulse — India's Wrestling News",
   description: "India's home for professional wrestling journalism. WWE, AEW, and Indian wrestling coverage.",
+  verification: {
+    google: 'Wkx23AVF5nL2MF2K2I0AElKyQt1YKBU3EH4yN33I0SY',
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
